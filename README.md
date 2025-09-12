@@ -2,7 +2,6 @@
 
 A full-stack expense tracking application built with React, Node.js, Express, and MongoDB. This application helps users track their income and expenses with an intuitive user interface and powerful reporting features.
 
-![Expense Tracker Screenshot](https://via.placeholder.com/800x500.png?text=Expense+Tracker+Screenshot)
 
 ## Features
 
