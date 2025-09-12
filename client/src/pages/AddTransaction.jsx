@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 import { FiTag, FiCalendar, FiX, FiPlus, FiArrowLeft } from "react-icons/fi";
 import {  AnimatePresence } from "framer-motion";
 
@@ -89,7 +90,7 @@ export default function AddTransaction({ onClose, onSuccess }) {
       
       console.log('Submitting transaction:', transactionData);
       
-      const response = await axios.post("http://localhost:5000/api/transactions", transactionData, {
+      const response = await axios.post(`${API_BASE_URL}/api/transactions`, transactionData, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

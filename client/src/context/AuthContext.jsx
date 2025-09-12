@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 
 const AuthContext = createContext();
 
@@ -14,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         try {
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          const response = await axios.get("http://localhost:5000/api/auth/me");
+          const response = await axios.get(`${API_BASE_URL}/api/auth/me`);
           setUser(response.data);
         } catch (error) {
           console.error("Failed to load user:", error);

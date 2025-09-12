@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 
 export default function EditTransaction({ onClose, onSuccess, transaction }) {
   const [title, setTitle] = useState("");
@@ -32,7 +33,7 @@ export default function EditTransaction({ onClose, onSuccess, transaction }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/transactions/${transaction._id}`, {
+      await axios.put(`${API_BASE_URL}/api/transactions/${transaction._id}`, {
         title,
         amount: type === "expense" ? -Math.abs(Number(amount)) : Math.abs(Number(amount)),
         category: category === "Other" ? customCategory : category,

@@ -1,6 +1,7 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 import EditTransaction from "../pages/EditTransaction";
 
 export default function EditTransactionPage() {
@@ -15,7 +16,7 @@ export default function EditTransactionPage() {
       try {
         setIsLoading(true);
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:5000/api/transactions/${id}`, {
+        const res = await axios.get(`${API_BASE_URL}/api/transactions/${id}`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
+import { API_BASE_URL } from "../config";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -11,12 +12,26 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Attempting login with:', { email });
+    const loginUrl = `${API_BASE_URL}/api/auth/login`;
+    console.log('Attempting to log in to:', loginUrl);
+    
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", { email, password });
-      login(res.data);
+      const response = await axios.post(loginUrl, 
+        { email, password },
+        { 
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
+        }
+      );
+      
+      console.log('Login response:', response);
+      login(response.data);
       navigate("/dashboard");
     } catch (error) {
-      alert(error.response?.data?.message || "Login failed");
+      console.error('Login error:', error);
+      console.error('Error response:', error.response);
+      alert(error.response?.data?.message || "Login failed. Check console for details.");
     }
   };
 
