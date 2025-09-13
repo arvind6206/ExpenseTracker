@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../config";
 import { FiTag, FiCalendar, FiX, FiPlus, FiArrowLeft } from "react-icons/fi";
-import {  AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const categories = {
   income: [
